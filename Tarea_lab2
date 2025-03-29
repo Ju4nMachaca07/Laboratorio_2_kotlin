@@ -1,0 +1,59 @@
+def mostrar_menu():
+    print("\nGestor de Tareas")
+    print("1. Agregar tarea")
+    print("2. Ver tareas")
+    print("3. Eliminar tarea")
+    print("4. Salir")
+
+
+def agregar_tarea(tareas):
+    tarea = input("Ingrese la nueva tarea: ")
+    tareas.append(tarea)
+    print("Tarea agregada con éxito!")
+
+
+def ver_tareas(tareas):
+    if not tareas:
+        print("No hay tareas pendientes.")
+    else:
+        print("\nLista de tareas:")
+        for i, tarea in enumerate(tareas, start=1):
+            print(f"{i}. {tarea}")
+
+
+def eliminar_tarea(tareas):
+    ver_tareas(tareas)
+    try:
+        indice = int(input("Ingrese el número de la tarea a eliminar: ")) - 1
+        if 0 <= indice < len(tareas):
+            tarea_eliminada = tareas.pop(indice)
+            print(f"Tarea '{tarea_eliminada}' eliminada.")
+        else:
+            print("Número de tarea inválido.")
+    except ValueError:
+        print("Entrada no válida.")
+
+
+def main():
+    tareas = []
+    while True:
+        mostrar_menu()
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            agregar_tarea(tareas)
+        elif opcion == "2":
+            ver_tareas(tareas)
+        elif opcion == "3":
+            eliminar_tarea(tareas)
+        elif opcion == "4":
+            print("Saliendo del gestor de tareas. ¡Hasta luego!")
+            break
+        else:
+            print("Opción no válida.")
+
+        input("Presione Enter para continuar")
+
+
+if __name__ == "__main__":
+    main()
